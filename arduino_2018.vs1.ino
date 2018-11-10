@@ -85,8 +85,8 @@ void loop()
       while(1)                                      // loop infinito onde vai pegar os valores dos sensores do acelerador
       {
        feedbackAIR = digitalRead(pinFBair);
-       acel1 = map(analogRead(pinAcel1), 0, 1023, 0, 100); // Adequa a leitura do Acel1 de 0~100%
-       acel2 = map(analogRead(pinAcel2), 0, 1023, 0, 100); // Adequa a leitura do Acel2 de 0~100% 
+       acel1 = map(analogRead(pinAcel1), 0, 1023, 0, 100); // Adequa a leitura do Acel1 de 0~255 valor da porta PWM
+       acel2 = map(analogRead(pinAcel2), 0, 1023, 0, 100); // Adequa a leitura do Acel2 de 0~255 valor da porta PWM
        motor = (acel1+acel2)/2;                            // pega a media de acel1 e acel2 
        analogWrite (pinMotor,motor);
        diferenca = (acel1 - acel2)*(acel1 - acel2);
@@ -119,7 +119,8 @@ void loop()
         digitalWrite(pinLedShtd, shtd);
         break;
        }
-      // if(freio < 100 || freio > )// MEDIR O QUE CHEGA 2 sensore freio //nao funciona
+       /*
+       if(freio < 100 || freio > )// MEDIR O QUE CHEGA 2 sensore freio //nao funciona
        {
         shtd = 1;
         shtdout = 1;
@@ -127,7 +128,7 @@ void loop()
         digitalWrite(pinLedShtd, shtd);
         break;
        }
-      
+       */
        if(feedbackAIR) //Se feedbackAIR estiver desligado durante a aceleracao
        {
         shtd=1;
